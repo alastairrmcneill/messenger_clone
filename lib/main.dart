@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Messenger Clone',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: Colors.black,
+              secondary: Colors.grey,
+            ),
       ),
       home: const MyHomePage(),
     );

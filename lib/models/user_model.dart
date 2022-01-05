@@ -9,3 +9,10 @@ class User {
     required this.imageUrl,
   });
 }
+
+// Current User
+final User currentUser = User(
+  id: 0,
+  name: 'Alastair',
+  imageUrl: 'assets/images/alastair.jpeg',
+);

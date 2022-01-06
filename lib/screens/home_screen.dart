@@ -14,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  PageController _myPageController = PageController();
+  final PageController _myPageController = PageController();
   int _selectedIndex = 0;
 
   void navBarTapped(int index) {

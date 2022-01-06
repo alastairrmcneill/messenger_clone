@@ -48,14 +48,14 @@ class CustomAppBar extends StatelessWidget {
     } else {
       return [
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.fromLTRB(0, 8, 10, 8),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.grey[800],
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              onPressed: () => print('Camera pressed'),
+              onPressed: () => print('Contacts pressed'),
               icon: const Icon(
                 Icons.contacts,
                 color: Colors.white,
@@ -80,8 +80,11 @@ class CustomAppBar extends StatelessWidget {
       elevation: 0,
       leading: Padding(
         padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
-        child: CircleAvatar(
-          backgroundImage: AssetImage(currentUser.imageUrl),
+        child: GestureDetector(
+          child: CircleAvatar(
+            backgroundImage: AssetImage(currentUser.imageUrl),
+          ),
+          onTap: () => {print('User profile')},
         ),
       ),
       actions: _buildActions(),

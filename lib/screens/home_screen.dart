@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:messenger_clone/models/user_model.dart';
+import 'package:messenger_clone/screens/chats_screen.dart';
+import 'package:messenger_clone/screens/people_screen.dart';
 import 'package:messenger_clone/widgets/widgets.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -10,11 +14,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  PageController _myPageController = PageController();
   int _selectedIndex = 0;
 
   void navBarTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _myPageController.jumpToPage(_selectedIndex);
     });
   }
 
@@ -25,7 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 60),
-        child: const CustomAppBar(),
+        child: CustomAppBar(
+          pageIndex: _selectedIndex,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navBarTapped,
@@ -46,6 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             label: 'People',
           ),
+        ],
+      ),
+      body: PageView(
+        controller: _myPageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          ChatsScreen(),
+          PeopleScreen(),
         ],
       ),
     );

@@ -21,10 +21,6 @@ class _ChatsScreenState extends State<ChatsScreen> {
         children: [
           SearchBar(),
           FriendsBar(),
-          CircleAvatar(
-            backgroundImage: AssetImage(currentUser.imageUrl),
-            radius: 20,
-          ),
           ...(allUsers).map((user) {
             return Text(
               user.firstName,

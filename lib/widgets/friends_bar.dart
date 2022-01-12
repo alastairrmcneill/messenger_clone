@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger_clone/models/user_model.dart';
+import 'package:messenger_clone/widgets/widgets.dart';
 
 class FriendsBar extends StatelessWidget {
   const FriendsBar({Key? key}) : super(key: key);
@@ -11,29 +12,7 @@ class FriendsBar extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage(user.imageUrl),
-                    radius: 25,
-                  ),
-                  user.isOnline
-                      ? Container(
-                          width: 18,
-                          height: 18,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.lightGreenAccent[400],
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 3,
-                            ),
-                          ),
-                        )
-                      : Text(''),
-                ],
-              ),
+              child: UserAvatar(user: user),
               height: 50,
               width: 50,
             ),

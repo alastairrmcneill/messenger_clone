@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:messenger_clone/models/message_model.dart';
 import 'package:messenger_clone/models/user_model.dart';
-import 'package:messenger_clone/widgets/friends_bar.dart';
 import 'package:messenger_clone/widgets/widgets.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -16,18 +16,13 @@ class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Colors.black,
       child: ListView(
         children: [
           SearchBar(),
           FriendsBar(),
-          ...(allUsers).map((user) {
-            return Text(
-              user.firstName,
-              style: TextStyle(
-                fontSize: 30,
-              ),
-            );
+          ...(chats).map((chat) {
+            return ConversationTile(message: chat);
           }).toList()
         ],
       ),

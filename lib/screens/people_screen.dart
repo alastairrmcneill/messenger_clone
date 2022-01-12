@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger_clone/models/user_model.dart';
+import 'package:messenger_clone/widgets/widgets.dart';
 
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({Key? key}) : super(key: key);
@@ -25,33 +26,15 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   children: [
-                    Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(user.imageUrl),
-                          radius: 20,
-                        ),
-                        user.isOnline
-                            ? Container(
-                                width: 18,
-                                height: 18,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.lightGreenAccent[400],
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 3,
-                                  ),
-                                ),
-                              )
-                            : Text(''),
-                      ],
+                    SizedBox(
+                      child: UserAvatar(user: user),
+                      height: 40,
+                      width: 40,
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     Text(
                       '${user.firstName} ${user.lastName}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.w300,

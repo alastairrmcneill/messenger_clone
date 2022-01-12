@@ -94,37 +94,137 @@ class MessageScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.only(bottom: 0),
-              reverse: true,
-              itemCount: conversation.length,
-              itemBuilder: (BuildContext context, int index) {
-                final message = conversation[index];
-                bool isMe = message.sender.id == currentUser.id;
-                return _buildMessage(message.text, isMe);
-              },
+      body: Container(
+        color: Colors.black,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.only(bottom: 0),
+                reverse: true,
+                itemCount: conversation.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final message = conversation[index];
+                  bool isMe = message.sender.id == currentUser.id;
+                  return _buildMessage(message.text, isMe);
+                },
+              ),
             ),
-          ),
-          _buildMessageComposer(),
-        ],
+            _buildMessageComposer(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildMessage(String text, bool isMe) {
-    return Text(
-      text,
-      textAlign: isMe ? TextAlign.right : TextAlign.left,
+    return Container(
+      padding: EdgeInsets.all(8),
+      margin: isMe
+          ? const EdgeInsets.only(
+              left: 60,
+              top: 8,
+              bottom: 8,
+              right: 20,
+            )
+          : const EdgeInsets.only(
+              left: 20,
+              top: 8,
+              bottom: 8,
+              right: 60,
+            ),
+      decoration: BoxDecoration(
+        color: isMe ? Colors.blue : Colors.grey[800],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w300,
+          letterSpacing: -0.5,
+        ),
+      ),
     );
   }
 
   Widget _buildMessageComposer() {
     return Container(
       height: 70,
-      color: Colors.red,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.apps,
+              color: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.camera_alt_rounded,
+              color: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.photo,
+              color: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.mic,
+              color: Colors.blue,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.grey[800],
+                ),
+                height: 40,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: TextField(
+                          textCapitalization: TextCapitalization.sentences,
+                          decoration: InputDecoration.collapsed(
+                              hintText: 'Aa',
+                              hintStyle: TextStyle(
+                                color: Colors.grey[400],
+                              )),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.emoji_emotions_outlined,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Icon(
+            Icons.thumb_up_rounded,
+            color: Colors.blue,
+          ),
+        ],
+      ),
     );
   }
 }
